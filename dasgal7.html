@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шагайн Морь Уралдаан</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .race-track {
+            position: relative;
+            width: 60%;
+            margin: 20px auto;
+            border-bottom: 3px dashed black;
+            height: 100px;
+        }
+        .horse {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+        #horse1 {
+            top: 10px;
+            left: 30px;
+        }
+        #horse2 {
+            top: 60px;
+            left: 30px;
+        }
+        .finish-line {
+            position: absolute;
+            right: 100px;
+            top: 0;
+            width: 10px;
+            height: 100px;
+            background: repeating-linear-gradient(
+                45deg,
+                black,
+                black 10px,
+                white 10px,
+                white 20px
+            );
+        }
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Шагайн Морь Уралдаан</h1>
+    <div class="race-track">
+        <img src="horse1.png" alt="Horse 1" id="horse1" class="horse">
+        <img src="horse2.png" alt="Horse 2" id="horse2" class="horse">
+        <div class="finish-line"></div>
+    </div>
+
+    <button id="player1Btn">Тоглогч 1 шагай орхих</button>
+    <button id="player2Btn">Тоглогч 2 шагай орхих</button>
+    <div id="results">
+        <p id="player1Result">Тоглогч 1: Морь = 0</p>
+        <p id="player2Result">Тоглогч 2: Морь = 0</p>
+    </div>
+    <button id="reset" style="display: none;">Дахиж эхлэх</button>
+
+    <script>
+        const horse1 = document.getElementById("horse1");
+        const horse2 = document.getElementById("horse2");
+        const player1Btn = document.getElementById("player1Btn");
+        const player2Btn = document.getElementById("player2Btn");
+        const player1Result = document.getElementById("player1Result");
+        const player2Result = document.getElementById("player2Result");
+        const resetButton = document.getElementById("reset");
+
+        const trackLength = 800;
+        let p1Position = 0;
+        let p2Position = 0;
+        let gameOver = false;
+
+        const rollDice = () => {
+            const sides = ["horse", "goat", "sheep", "camel"];
+            const results = Array(4)
+                .fill(null)
+                .map(() => sides[Math.floor(Math.random() * sides.length)]);
+            return results.filter((side) => side === "horse").length; // return number of "horse" outcomes
+        };
+
+        const moveHorse = (horse, position, step, player) => {
+            position += step * 80; // move the horse by 'step' multiplied by 80 pixels
+            if (position >= trackLength) {
+                position = trackLength;
+                if (!gameOver) {
+                    gameOver = true;
+                    alert(`Тоглогч ${player} яллаа! 🏆`);
+                    player1Btn.disabled = true;
+                    player2Btn.disabled = true;
+                    resetButton.style.display = "inline-block";
+                }
+            }
+            horse.style.left = `${position}px`;
+            return position;
+        };
+
+        player1Btn.addEventListener("click", () => {
+            if (gameOver) return;
+            const step = rollDice();
+            p1Position = moveHorse(horse1, p1Position, step, 1);
+            player1Result.textContent = `Тоглогч 1: Морь = ${step}`;
+            player1Btn.disabled = true;
+            player2Btn.disabled = false;
+        });
+
+        player2Btn.addEventListener("click", () => {
+            if (gameOver) return;
+            const step = rollDice();
+            p2Position = moveHorse(horse2, p2Position, step, 2);
+            player2Result.textContent = `Тоглогч 2: Морь = ${step}`;
+            player2Btn.disabled = true;
+            player1Btn.disabled = false;
+        });
+
+        resetButton.addEventListener("click", () => {
+            p1Position = 0;
+            p2Position = 0;
+            gameOver = false;
+
+            horse1.style.left = "0px";
+            horse2.style.left = "0px";
+
+            player1Btn.disabled = false;
+            player2Btn.disabled = true;
+
+            player1Result.textContent = "Тоглогч 1: Морь = 0";
+            player2Result.textContent = "Тоглогч 2: Морь = 0";
+
+            resetButton.style.display = "none";
+        });
+    </script>
+</body>
+</html>
