@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasgal 4.2</title>
+    <link href="bootstrap.css" rel="stylesheet">
+    <style>
+        .box {
+            display: flex;
+            height: 200px;
+            border-radius: 10px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            color: aliceblue;
+            font-size:xx-large;
+        }
+        .green { background-color: rgb(64, 155, 64); }
+        .blue { background-color: rgb(54, 166, 204); }
+        .red { background-color: rgb(180, 46, 46); }
+        .gray { background-color: rgb(214, 211, 211); }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-6 col-lg-3 mb-3"> <!-- col-6 n jijig delgets deer 50% col-lg-3 n tom delgets deer 25% -->
+                <div class="box green">1</div>
+            </div>
+            <div class="col-6 col-lg-3 mb-3">
+                <div class="box green">2</div> <!-- col-6 n jijig delgets deer 50% col-lg-3 n tom delgets deer 25% -->
+            </div>
+
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="box blue">3</div> <!-- col-12 n jijig delgets deer 100% col-lg-6 n tom delgets deer 50% -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="box red">4</div> <!-- col-12 n jijig delgets deer 100% col-lg-6 n tom delgets deer 50% -->
+            </div>
+            <div class="col-6 col-lg-6">
+                <div class="box red">5</div> <!-- col-6 n jijig delgets deer 50% col-lg-6 n tom delgets deer 50% -->
+            </div>
+            <div class="col-6 col-lg-12">
+                <div class="box gray">6</div> <!-- col-6 n jijig delgets deer 50% col-lg-12 n tom delgets deer buheld n avna -->
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap.js"></script>
+
+</body>
+</html>

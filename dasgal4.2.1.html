@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout with Images</title>
+    <link href="bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div class="d-block d-md-none">
+            <div class="mb-3">
+                <img src="zurag.png" alt="Image 1" class="img-fluid">
+            </div>
+            <div class="mb-3">
+                <img src="D:\download.jpg" alt="Image 2" class="img-fluid">
+            </div>
+            <div class="mb-3">
+                <img src="D:\download (2).jpg" alt="Image 3" class="img-fluid">
+            </div>
+        </div>
+
+        <div class="d-none d-md-block">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="image1.png" class="d-block w-100" alt="Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="D:\download.jpg" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="D:\download (2).jpg"  class="d-block w-100" alt="Image 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap.js"></script>
+</body>
+</html>
+
